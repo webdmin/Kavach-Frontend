@@ -1,0 +1,306 @@
+/* LoginPage.css */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+body, html {
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling for iOS */
+  overflow-x: hidden;
+  min-height: calc(100vh - 1px);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex; /* Ensures proper layout flow */
+  flex-direction: column; 
+}
+
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f1f1f1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  flex-direction: column;
+}
+
+.header {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  z-index: 10;
+  height: 80px;
+  box-sizing: border-box;
+}
+
+.brand-name {
+  font-weight: bold;
+  font-size: 35px;
+  color: white;
+  text-align: center;
+  flex-grow: 1;
+  position: relative;
+}
+
+.logo{
+  width: 80px;
+  height: auto;
+  position: absolute;
+  right: 20px;
+  bottom: 10px;
+}
+
+.background-image {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-box {
+  background-color: rgba(249, 249, 249, 0.99);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: black;
+  position: relative;
+  z-index: 20;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.login-subheading {
+  font-size: 16px;
+  margin-bottom: 20px;
+  opacity: 0.8;
+}
+
+.textbox {
+  position: relative;
+  margin: 15px 0;
+}
+
+.textbox input {
+  width: 100%;
+  padding: 15px;
+  padding-left: 40px;
+  border: 2px solid #b4b4b4;
+  border-radius: 5px;
+  background: transparent;
+  color: black;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.textbox input:focus {
+  border-color: #4caf50;
+  outline: none;
+}
+
+.textbox i {
+  position: absolute;
+  left: 13px;
+  top: 18px;
+  color: black;
+}
+
+.btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #e5ab2e;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ac7500;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 10px 0;
+}
+
+.remember-me input {
+  margin-right: 5px;
+}
+
+.remember-me label {
+  font-size: 14px;
+  color: black;
+}
+
+.password-input {
+  padding-right: 35px;
+}
+
+.password-eye-icon {
+  position: absolute;
+  width: 20px;
+  margin-left: 290px;
+  margin-top: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: black;
+}
+
+input[type="password"],
+input[type="text"] {
+  padding-right: 35px;
+  width: 100%;
+}
+
+.powered-by2 {
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 20px;
+  bottom: 20px;
+}
+
+.logo-top-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 10;
+}
+
+.logo-top-left-img {
+  width: 100px;
+  height: auto;
+}
+
+/* Always center Kavach Chatbot */
+.brand-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 35px;
+  font-weight: bold;
+  color: white;
+}
+
+/* Position logo and powered by text at bottom-right */
+.powered-by2 {
+  position: fixed;
+  bottom: 25px;
+  right: 95px;
+  font-size: 15px;
+  font-weight: bold;
+  color: white;
+}
+
+.logo-top-left {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    text-align: center;
+  }
+  .brand-name {
+    font-size: 30px;
+  }
+  .login-box {
+    width: 90%;
+    padding: 20px;
+    margin-top: 20px;
+  }
+  h2 {
+    font-size: 24px;
+  }
+  .login-subheading {
+    font-size: 14px;
+  }
+  .logo{
+    width: 80px;
+    height: auto;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 10px;
+    font-size: 18px;
+    height: 100px;
+    margin-bottom: 120px;
+  }
+  .brand-name {
+    font-size: 26px;
+  }
+  .login-box {
+    width: 90%;
+    padding: 15px;
+    bottom: 80px;
+  }
+  h2 {
+    font-size: 22px;
+  }
+  .login-subheading {
+    font-size: 12px;
+  }
+  .password-eye-icon {
+    right: 10px;
+  }
+  .logo-top-left-img {
+    width: 80px;
+  }
+  .logo{
+    width: 60px;
+    height: auto;
+    position: absolute;
+    right: 20px;
+    bottom: 10px;
+  }
+  .powered-by2{
+    bottom: 35px;
+    font-size: 10px;
+    right: 20px;
+    position: absolute;
+  }
+}
