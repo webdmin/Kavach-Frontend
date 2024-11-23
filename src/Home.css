@@ -58,7 +58,7 @@ body, html {
   padding: 60px;
   display: flex;
   flex-direction: column;
-  height: 78vh;
+  height: 76vh;
   justify-content: space-between;
   border: 1px solid #ddd;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
@@ -357,30 +357,52 @@ body, html {
     }
   }
 
-/* CSS for image handling */
+
+/* Image gallery styling */
 .image-gallery {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);  /* Show 3 images per row */
+  display: flex;
+  flex-wrap: wrap;
   gap: 10px;
-  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.small-images {
+  /* Display 5 small images per row */
+  margin-bottom: 20px;
+}
+
+.large-images {
+  /* Display 2 large images per row */
+  margin-top: 20px;
+}
+
+.image-container {
+  max-width: 30%; /* Default 3 images per row for large images */
+}
+
+.small-image {
+  max-width: 18%; /* For small images, increase the count per row (5 images per row) */
+}
+
+.large-image {
+  max-width: 45%; /* For larger images, show 2 per row */
 }
 
 .response-image {
   width: 100%;
+  height: auto;  /* Ensure images maintain their aspect ratio */
+}
+
+/* Optional styling for small and large images to make sure they look good */
+.small-image img {
   height: auto;
-  object-fit: cover;  /* Ensures the image maintains its aspect ratio */
-  border-radius: 8px;
+  max-width: 100%;  /* Maintain original aspect ratio */
 }
 
-/* Optional: You can tweak grid-template-columns to fit different screen sizes */
-@media (max-width: 768px) {
-  .image-gallery {
-    grid-template-columns: repeat(2, 1fr);  /* Show 2 images per row on smaller screens */
-  }
+.large-image img {
+  height: auto;
+  max-width: 100%;  /* Maintain original aspect ratio */
 }
 
-@media (max-width: 480px) {
-  .image-gallery {
-    grid-template-columns: 1fr;  /* Show 1 image per row on very small screens */
-  }
-}
+
+
