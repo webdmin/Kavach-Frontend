@@ -38,7 +38,7 @@ function LoginPage() {
 
     // Check for valid credentials
     if ((username === 'admin' && password === 'Kavach2024') || 
-        (username === 'rdsouser1' && password === 'Kavach01')) {
+        (username === 'RDSO_user1' && password === 'Kavach01')) {
       const currentLoginTime = new Date().toISOString(); // Capture current login time
       setLoginTime(currentLoginTime); // Update the login time state
 
