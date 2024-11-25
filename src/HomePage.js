@@ -6,12 +6,12 @@ const Home = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isBlurred] = useState(false);
+  const [isBot1, setIsBot1] = useState(true); // State to track which API is used
   const messageEndRef = useRef(null);
 
-  // Scroll to bottom whenever messages state changes
   useEffect(() => {
     scrollToBottom();
-  }, [messages]); // Depend on messages, so it triggers every time messages change
+  }, [messages]);
 
   const handleInputChange = (e) => {
     let value = e.target.value;
@@ -23,14 +23,16 @@ const Home = () => {
 
   const handleSendMessage = async () => {
     if (input.trim()) {
-      // Clear the input field immediately after the message is sent
-      setInput('');  // This will clear the input field
-
+      setInput('');
       const newMessages = [...messages, { text: input, sender: 'user' }];
       setMessages(newMessages);
 
+      const apiUrl = isBot1
+        ? 'https://kavachimage2o-arf9cuexg6ehhgh4.centralindia-01.azurewebsites.net/query'  // Replace with actual API URL for Bot 1
+        : 'https://kavachimg-version2-a9dbhsamgwadaygp.centralindia-01.azurewebsites.net/query'; // Replace with actual API URL for Bot 2
+
       try {
-        const response = await fetch('https://kavachimage2o-arf9cuexg6ehhgh4.centralindia-01.azurewebsites.net/query', {
+        const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: input }),
@@ -46,7 +48,6 @@ const Home = () => {
         const newMessage = { sender: 'bot' };
 
         if (data.images && Array.isArray(data.images)) {
-          // Separate small and large images
           newMessage.images = {
             small: [],
             large: [],
@@ -69,9 +70,7 @@ const Home = () => {
           });
         }
 
-        // Remove '*' from the response text
         newMessage.text = data.response.replace(/\*/g, '');
-
         setMessages([...newMessages, newMessage]);
       } catch (err) {
         console.error('Error fetching answer from API:', err);
@@ -84,15 +83,30 @@ const Home = () => {
     messageEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
+  const handleToggle = () => {
+    setIsBot1(!isBot1); // Toggle between Bot1 and Bot2
+  };
+
   return (
     <>
       <header className="Homepageheader">
         <div className="chat-title">KAVACH GUIDELINES CHATBOT</div>
+        <label className="toggle-switch">
+          <input type="checkbox" checked={!isBot1} onChange={handleToggle} />
+          <span className="slider"></span>
+        </label>
+        <span className="bot-label">{isBot1 ? 'MODEL A' : 'MODEL B'}</span>
       </header>
+
 
       <div className={`chat-container ${isBlurred ? 'blurred' : ''}`}>
         <div className="chat-header">
           <h1>How can I assist you?</h1>
+          {/* <label className="toggle-switch">
+            <input type="checkbox" checked={!isBot1} onChange={handleToggle} />
+            <span className="slider"></span>
+          </label>
+          <span className="bot-label">{isBot1 ? 'BOT1' : 'BOT2'}</span> */}
         </div>
 
         <div className="chat-box">
@@ -108,32 +122,20 @@ const Home = () => {
                 </div>
                 <div className={`message-content ${message.sender}`}>
                   {message.text && <span>{message.text}</span>}
-
-                  {/* Render small images first */}
                   {message.images && message.images.small.length > 0 && (
                     <div className="image-gallery small-images">
                       {message.images.small.map((image, idx) => (
                         <div className="image-container small-image" key={idx}>
-                          <img
-                            src={image.src}
-                            alt={`response-image-small-${idx}`}
-                            className="response-image"
-                          />
+                          <img src={image.src} alt={`response-image-small-${idx}`} className="response-image" />
                         </div>
                       ))}
                     </div>
                   )}
-
-                  {/* Render large images below small images */}
                   {message.images && message.images.large.length > 0 && (
                     <div className="image-gallery large-images">
                       {message.images.large.map((image, idx) => (
                         <div className="image-container large-image" key={idx}>
-                          <img
-                            src={image.src}
-                            alt={`response-image-large-${idx}`}
-                            className="response-image"
-                          />
+                          <img src={image.src} alt={`response-image-large-${idx}`} className="response-image" />
                         </div>
                       ))}
                     </div>
@@ -173,5 +175,3 @@ const Home = () => {
 };
 
 export default Home;
-
-
