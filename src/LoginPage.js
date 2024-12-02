@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import backgroundImage from './images/t-5.jpg'; // Your background image
 import logo from './images/logo.jpg.png'; // Your logo
 import logo2 from './images/Image.png'; 
 import './LoginPage.css'; // Your styles
 
 function LoginPage() {
-  const [loading, setLoading] = useState(true); // State to manage loading
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    // Simulate a delay or loading process for demonstration
-    setTimeout(() => {
-      setLoading(false); // Stop loading after 3 seconds
-    }, 3000);
-  }, []);
 
   return (
     <div className="login-page">
@@ -39,6 +28,9 @@ function LoginPage() {
     </div>
   );
 }
+
+export default LoginPage;
+
 
 export default LoginPage;
 
